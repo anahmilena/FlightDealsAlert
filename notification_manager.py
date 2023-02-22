@@ -1,16 +1,17 @@
 from twilio.rest import Client
 import smtplib
+import os
 
 
 class NotificationManager:
     # This class is responsible for sending notifications with the deal flight details.
 
     def __init__(self):
-        self.account_sid = "AC0634ba369fb617ac04e195e42c286fef"
-        self.auth_token = "2668605a154e538e45e850de8eaa2f30"
+        self.account_sid = os.environ.get("ENV_TWILIO_SID")
+        self.auth_token = os.environ.get("ENV_TWILIO_TOKEN")
         self.client = Client(self.account_sid, self.auth_token)
-        self.my_mail = "behealing.therapy@gmail.com"
-        self.mail_pass = "gumwqwhsthuveqbc"
+        self.my_mail = os.environ.get("ENV_MY_MAIL")
+        self.mail_pass = os.environ.get("ENV_MY_MAIL_PASS")
 
     def send_msg(self, data: dict):
         if int(data["stop_over"][0]) == 0:

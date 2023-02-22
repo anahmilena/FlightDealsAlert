@@ -1,13 +1,14 @@
 import requests
 import json
+import os
 
 
 class DataManager:
     # This class is responsible for talking to the Google Sheet.
 
     def __init__(self):
-        self.SH_EP = "https://api.sheety.co/e214a91fe7d251bcca71a9c9bd6d0f94/flightDeals"
-        self.AUTH = "Basic YW5haG1pbGVuYTpBbmRvUnJhIzM4"
+        self.SH_EP = os.environ.get("ENV_SHEETY_EP")
+        self.AUTH = os.environ.get("ENV_SHEETY_AUTH")
         self.header = {"Authorization": self.AUTH}
 
     def get_data_places(self):

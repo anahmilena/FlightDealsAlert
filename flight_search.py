@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 from datetime import datetime, timedelta
 
 
@@ -7,7 +8,7 @@ class FlightSearch:
     # This class is responsible for talking to the Flight Search API.
 
     def __init__(self):
-        self.API_KEY = "G3aUyg8QecRs8jKjbYllfDpzcS0ZgoTj"
+        self.API_KEY = os.environ.get("ENV_TEQUILA_KEY")
         self.API_EP = "https://api.tequila.kiwi.com/"
         self.header = {"apikey": self.API_KEY}
         self.DAYS = 90
